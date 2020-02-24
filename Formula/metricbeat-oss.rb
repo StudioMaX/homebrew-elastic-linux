@@ -1,13 +1,19 @@
 class MetricbeatOss < Formula
   desc "Collect metrics from your systems and services"
   homepage "https://www.elastic.co/products/beats/metricbeat"
-  url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-7.13.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+  if OS.mac?
+    url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-7.13.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "f806e0c4ba19f17732a939a505952a9e5abe2da9793222c8c0deb1302cdbadbd"
+  else
+    url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "29501eaff3d4b1de32da6b27bfaa6e6512e12b439ba0809fa5583b73a2898fce"
+  end
   version "7.13.1"
-  sha256 "f806e0c4ba19f17732a939a505952a9e5abe2da9793222c8c0deb1302cdbadbd"
-  conflicts_with "metricbeat"
-  conflicts_with "metricbeat-full"
 
   bottle :unneeded
+
+  conflicts_with "metricbeat"
+  conflicts_with "metricbeat-full"
 
   def install
     ["fields.yml", "ingest", "kibana", "module"].each { |d| libexec.install d if File.exist?(d) }
@@ -56,6 +62,7 @@ class MetricbeatOss < Formula
         path: #{testpath}/data
         filename: metricbeat
     EOS
+    chmod "go-w", testpath/"config/metricbeat.yml" unless OS.mac?
 
     (testpath/"logs").mkpath
     (testpath/"data").mkpath

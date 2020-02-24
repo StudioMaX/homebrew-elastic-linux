@@ -1,13 +1,19 @@
 class ApmServerOss < Formula
   desc "Server for shipping APM metrics to Elasticsearch"
   homepage "https://www.elastic.co/"
-  url "https://artifacts.elastic.co/downloads/apm-server/apm-server-oss-7.13.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+  if OS.mac?
+    url "https://artifacts.elastic.co/downloads/apm-server/apm-server-oss-7.13.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "291d707d8f579e9f89409fcdc30873962c903e7d3f27c6cb9d2979a3220aa385"
+  else
+    url "https://artifacts.elastic.co/downloads/apm-server/apm-server-oss-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "c665398b138e5617c019aa232f709d236685f47400d82cecca3a4759de9f916c"
+  end
   version "7.13.1"
-  sha256 "291d707d8f579e9f89409fcdc30873962c903e7d3f27c6cb9d2979a3220aa385"
-  conflicts_with "apm-server"
-  conflicts_with "apm-server-full"
 
   bottle :unneeded
+
+  conflicts_with "apm-server"
+  conflicts_with "apm-server-full"
 
   def install
     ["fields.yml", "ingest", "kibana", "module"].each { |d| libexec.install d if File.exist?(d) }
@@ -66,6 +72,7 @@ class ApmServerOss < Formula
         codec.format:
           string: '%{[transaction]}'
     EOS
+    chmod "go-w", testpath/"config/apm-server.yml" unless OS.mac?
     pid = fork do
       exec bin/"apm-server", "-path.config", testpath/"config", "-path.data", testpath/"data"
     end

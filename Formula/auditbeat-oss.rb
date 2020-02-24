@@ -1,13 +1,19 @@
 class AuditbeatOss < Formula
   desc "Lightweight Shipper for Audit Data"
   homepage "https://www.elastic.co/products/beats/auditbeat"
-  url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-oss-7.13.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+  if OS.mac?
+    url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-oss-7.13.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "9d064c892a7352430c0fa27305d3dec794fc61cd2fc46c74ddd531562e5f66bd"
+  else
+    url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-oss-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "da352815eb44a6ca14bfbc7877a4b87e5ecc56f1cd42b96711fc36a3b2722dd9"
+  end
   version "7.13.1"
-  sha256 "9d064c892a7352430c0fa27305d3dec794fc61cd2fc46c74ddd531562e5f66bd"
-  conflicts_with "auditbeat"
-  conflicts_with "auditbeat-full"
 
   bottle :unneeded
+
+  conflicts_with "auditbeat"
+  conflicts_with "auditbeat-full"
 
   def install
     ["fields.yml", "ingest", "kibana", "module"].each { |d| libexec.install d if File.exist?(d) }
@@ -61,6 +67,7 @@ class AuditbeatOss < Formula
         path: "#{testpath}/auditbeat"
         filename: auditbeat
     EOS
+    chmod "go-w", testpath/"config/auditbeat.yml" unless OS.mac?
     pid = fork do
       exec "#{bin}/auditbeat", "-path.config", testpath/"config", "-path.data", testpath/"data"
     end
