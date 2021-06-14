@@ -6,25 +6,25 @@ This tap is for products in the Elastic stack.
 
 Install the tap via:
 
-    brew tap elastic/tap
+    brew tap studiomax/elastic-linux
 
 Then you can install individual products via:
 
-    brew install elastic/tap/elasticsearch-full
+    brew install studiomax/elastic-linux/elasticsearch-full
 
 The following products are supported:
 
-* Elasticsearch `brew install elastic/tap/elasticsearch-full`
-* Logstash `brew install elastic/tap/logstash-full`
-* Kibana `brew install elastic/tap/kibana-full`
+* Elasticsearch `brew install studiomax/elastic-linux/elasticsearch-full`
+* Logstash `brew install studiomax/elastic-linux/logstash-full`
+* Kibana `brew install studiomax/elastic-linux/kibana-full`
 * Beats
-  * Auditbeat `brew install elastic/tap/auditbeat-full`
-  * Filebeat `brew install elastic/tap/filebeat-full`
-  * Heartbeat `brew install elastic/tap/heartbeat-full`
-  * Metricbeat `brew install elastic/tap/metricbeat-full`
-  * Packetbeat `brew install elastic/tap/packetbeat-full`
-* APM server `brew install elastic/tap/apm-server-full`
-* Elastic Cloud Control (ecctl) `brew install elastic/tap/ecctl`
+  * Auditbeat `brew install studiomax/elastic-linux/auditbeat-full`
+  * Filebeat `brew install studiomax/elastic-linux/filebeat-full`
+  * Heartbeat `brew install studiomax/elastic-linux/heartbeat-full`
+  * Metricbeat `brew install studiomax/elastic-linux/metricbeat-full`
+  * Packetbeat `brew install studiomax/elastic-linux/packetbeat-full`
+* APM server `brew install studiomax/elastic-linux/apm-server-full`
+* Elastic Cloud Control (ecctl) `brew install studiomax/elastic-linux/ecctl`
 
 For Logstash, Beats and APM server, we fully support the OSS distributions
 too; replace `-full` with `-oss` in any of the above commands to install the 
