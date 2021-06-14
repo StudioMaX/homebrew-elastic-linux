@@ -6,7 +6,7 @@ class ApmServerFull < Formula
     sha256 "9e15da1ce96598008ee28f9689f8bafaebef92815b795b1d1c6c061d0b8bcf96"
   else
     url "https://artifacts.elastic.co/downloads/apm-server/apm-server-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "49166f9d0aa22ad4b05fea5d5ba7c8c555b7fa9afac5665541312a8c6625ea35"
+    sha256 "058f496f0ae1876513453a13674d0db5ab027d94d82a5951750b9aa2a7d8aff5"
   end
   version "7.13.1"
 

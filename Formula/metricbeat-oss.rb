@@ -6,7 +6,7 @@ class MetricbeatOss < Formula
     sha256 "f806e0c4ba19f17732a939a505952a9e5abe2da9793222c8c0deb1302cdbadbd"
   else
     url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "29501eaff3d4b1de32da6b27bfaa6e6512e12b439ba0809fa5583b73a2898fce"
+    sha256 "f9c4b32fd43c23b31803218b3d78ee77e30905fca5d75a696b70d78be6913be7"
   end
   version "7.13.1"
 

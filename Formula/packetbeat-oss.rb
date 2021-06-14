@@ -6,7 +6,7 @@ class PacketbeatOss < Formula
     sha256 "116274c0ab88b3e38464a29fe4ab57e30c52df6736854d23778a34a08efcfc5b"
   else
     url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "4581d920b0731b17df8d37d49bdf73c3213d768972be49fcf118b1acd91cb522"
+    sha256 "d34531a795e375600dbdd06c87bdc18d43fbdbe8cfee0c14b5007e05eae7106d"
   end
   version "7.13.1"
 

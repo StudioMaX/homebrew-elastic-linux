@@ -6,7 +6,7 @@ class FilebeatFull < Formula
     sha256 "c82599d59524e3a498ab68bd829bd8f0d11378c50589cb6b78e159989025ed7f"
   else
     url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "c7643ad2eab3e6efb3efcb7554b7f8c095234e68652ff91240e0027f812b0f84"
+    sha256 "bae22eb85cc020f6772b43e3ae9870e5631fe3d0903ab630ec9b0a6c9e67634d"
   end
   version "7.13.1"
 

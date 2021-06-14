@@ -6,7 +6,7 @@ class LogstashOss < Formula
     sha256 "24bb31c7cfd833f91eae176144605a6a84232ca62dc9390871a7e07100decdda"
   else
     url "https://artifacts.elastic.co/downloads/logstash/logstash-oss-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "9230f5b026b878eb0d071e3616cfe6f3f80b5e15243a24494709db58c35f5627"
+    sha256 "94636b8ef4f1bfbef5e2dc4d9f38ce065d22ebb656b23cac96104529b5666b12"
   end
   version "7.13.1"
 

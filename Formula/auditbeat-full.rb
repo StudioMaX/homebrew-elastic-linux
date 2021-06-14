@@ -6,7 +6,7 @@ class AuditbeatFull < Formula
     sha256 "f1bdedfbb34e4f0a4f796d2733aecdae8f226395e9121a5dca79b083d3caddf7"
   else
     url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "b0cfb8a6b2c241087d0d1db1e44a7280a6733b80c6b3bf9f157fd9b85fb55fff"
+    sha256 "3e60d31705d45087685f0470ce0dc210c65b9ac84b28ab59365189a62236ebea"
   end
   version "7.13.1"
 

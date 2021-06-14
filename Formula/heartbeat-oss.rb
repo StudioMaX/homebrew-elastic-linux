@@ -6,7 +6,7 @@ class HeartbeatOss < Formula
     sha256 "927845bf0718371e4ad6f92441577d6593e7c979013b766935c7d923e0ef33f8"
   else
     url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "240ff546a743d71a2da9b54b8bc085ba9ffd53d7e8243f5d115cfe5e6a5d93d8"
+    sha256 "b1346a28be9980f0c19bebee99391ef2ce9c17fafa0d8268856c446631c225c0"
   end
   version "7.13.1"
 

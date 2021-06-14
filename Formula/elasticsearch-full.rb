@@ -6,7 +6,7 @@ class ElasticsearchFull < Formula
     sha256 "5c46e87b5f487f0973a0ac8eef17d2088976dba64a65ba8c9976c167b2360cb4"
   else
     url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "25583ddd44a99437958f7f9410cd9746c8230b367d570cdf69e96824a583748a"
+    sha256 "ed1e66f09a0628bef3d685cd97d4ce8e43698037902633866a31666343a436a1"
   end
   version "7.13.1"
 

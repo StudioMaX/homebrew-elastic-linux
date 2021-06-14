@@ -6,7 +6,7 @@ class PacketbeatFull < Formula
     sha256 "7d06796aae41836c96983e1f460c85c4136588bde919fd5dd49130c609029d44"
   else
     url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.13.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "3d6946e5ea7ab9f8bd82d6b06077a8c22297e77d1e1b2f9c79ec7bbb3e2dbcd7"
+    sha256 "6a8ba2ba83435d013754c9400ee75bd3fc4167f549b75fc4a427981130413c18"
   end
   version "7.13.1"
 
