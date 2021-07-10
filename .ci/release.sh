@@ -28,7 +28,7 @@ install_homebrew() {
   remove_homebrew
 
   # https://docs.brew.sh/Installation#untar-anywhere
-  git clone https://github.com/Homebrew/brew.git "$HOMEBREW_INSTALL_PATH"
+  git clone --depth=1 https://github.com/Homebrew/brew.git "$HOMEBREW_INSTALL_PATH"
 
   #shellcheck disable=SC2046
   eval $("$HOMEBREW_INSTALL_PATH/bin/brew" shellenv)
@@ -46,11 +46,11 @@ env DOWNLOAD_BASE="$DOWNLOAD_BASE" .ci/update.sh "$VERSION"
 .ci/update-to-production-downloads.sh
 
 # create a git patch file with the updates
-UPDATE_BRANCH_NAME="update-$VERSION-$(date -u +%Y%m%d%H%M)"
-git checkout -b "$UPDATE_BRANCH_NAME"
-git add Formula
-git commit -m "Update to $VERSION" -m "Updated by homebrew-tap automation."
-mkdir -p .ci/output
-git format-patch -1 --stdout > ".ci/output/update-$VERSION.patch"
-git checkout -
+#UPDATE_BRANCH_NAME="update-$VERSION-$(date -u +%Y%m%d%H%M)"
+#git checkout -b "$UPDATE_BRANCH_NAME"
+#git add Formula
+#git commit -m "Update to $VERSION" -m "Updated by homebrew-tap automation."
+#mkdir -p .ci/output
+#git format-patch -1 --stdout > ".ci/output/update-$VERSION.patch"
+#git checkout -
 

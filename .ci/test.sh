@@ -15,7 +15,7 @@ brew_test() {
   FORMULA_FILE=$1
 
   # ensure this formula is not already installed
-  if brew uninstall --formula "$FORMULA_FILE" > /dev/null
+  if brew uninstall --formula "$(basename "$FORMULA_FILE" .rb)" > /dev/null
   then
     log "The formula from '${FORMULA_FILE}' appears to have already been installed, it has been uninstalled, continuing."
   fi
@@ -33,7 +33,7 @@ brew_test() {
     TEST_FAILURE="true"
   fi
 
-  brew uninstall --formula "$FORMULA_FILE"
+  brew uninstall --formula "$(basename "$FORMULA_FILE" .rb)"
 }
 
 log "Using brew: '$(which brew)'."
