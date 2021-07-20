@@ -2,13 +2,13 @@ class KibanaFull < Formula
   desc "Analytics and search dashboard for Elasticsearch"
   homepage "https://www.elastic.co/products/kibana"
   if OS.mac?
-    url "https://artifacts.elastic.co/downloads/kibana/kibana-7.13.3-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "2a9332df1336241db557aa35d2de28a1d9f75ae948837bad1eaedb74463f95e8"
+    url "https://artifacts.elastic.co/downloads/kibana/kibana-7.13.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "1e147bf2ed4df7ad3e1f6deaf278a92347f4c1d18efe17bf47c3f04edf0e415e"
   else
     url "https://artifacts.elastic.co/downloads/kibana/kibana-7.13.3-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "a7cbc37b6c8d48135368a0f94cee07936a65c1a3d2070502e63dc851471d8260"
   end
-  version "7.13.3"
+  version "7.13.4"
 
   bottle :unneeded
 

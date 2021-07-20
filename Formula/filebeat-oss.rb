@@ -2,13 +2,13 @@ class FilebeatOss < Formula
   desc "File harvester to ship log files to Elasticsearch or Logstash"
   homepage "https://www.elastic.co/products/beats/filebeat"
   if OS.mac?
-    url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-7.13.3-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "ea18a03f1eb67cc424a697b0acecc6c0f3b5c939ea0687b765c8ee3c7a5a388d"
+    url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-7.13.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "0c28f555feb4e829129b7b74488ea7b1e714bf2de7df2d1e2fc35b036f165d6c"
   else
     url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-7.13.3-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "f525cadc88366125ac423e7697609724805e240b1d45e8c39bac0f96ebca99d1"
   end
-  version "7.13.3"
+  version "7.13.4"
 
   bottle :unneeded
 
