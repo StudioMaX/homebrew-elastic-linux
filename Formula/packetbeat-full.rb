@@ -5,8 +5,8 @@ class PacketbeatFull < Formula
     url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.14.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "110436206776005bc1794733da01320ef37b508d67881c087c4a5f41235e9d83"
   else
-    url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.14.0-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "2698922ee5c90a845fce0ad053e0b58c5b9b0a6f7ab57e95cf3741a9cdbe951b"
+    url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.14.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "797523ea453d363bb8c16dbd539fb1aa7674451261e04e7018b49ce56691733b"
   end
   version "7.14.1"
 
