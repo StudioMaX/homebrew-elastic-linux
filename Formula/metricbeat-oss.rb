@@ -2,13 +2,13 @@ class MetricbeatOss < Formula
   desc "Collect metrics from your systems and services"
   homepage "https://www.elastic.co/products/beats/metricbeat"
   if OS.mac?
-    url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-7.14.0-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "c3847cf044b64ac247685fa56e22ff602b29cb75357bbdd030d7149e71e91b4c"
+    url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-7.14.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "245f9ff8ce28306451764a6b7755564ab135b7e1d2d644ae7aa696e8c64c4fca"
   else
     url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-7.14.0-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "113c79b06319c4138df96caf95989546eb6ac571d7dcba10e494c7aa71985215"
   end
-  version "7.14.0"
+  version "7.14.1"
 
   bottle :unneeded
 
