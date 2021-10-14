@@ -2,13 +2,13 @@ class ElasticsearchFull < Formula
   desc "Distributed search & analytics engine"
   homepage "https://www.elastic.co/products/elasticsearch"
   if OS.mac?
-    url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.14.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "ac1949836c64d4d1b1b9273400d5fd3a91bb6964ded67d2947e93324fad94028"
+    url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.15.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "ad093b4fe6773363fbc9c17d32a89222e536899b2a41c8dcc47b82a9c1459b6c"
   else
     url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.14.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "88fea9c583cdffc5f216b5204902732d4828d29675be2fabcce319ee70b759fd"
   end
-  version "7.14.1"
+  version "7.15.1"
 
   bottle :unneeded
 
@@ -128,7 +128,7 @@ class ElasticsearchFull < Formula
 
     pid = testpath/"pid"
     begin
-      system "#{bin}/elasticsearch", "-d", "-p", pid, "-Epath.data=#{testpath}/data", "-Epath.logs=#{testpath}/logs", "-Enode.name=test-cli", "-Ehttp.port=#{port}"
+      system "#{bin}/elasticsearch", "-d", "-p", pid, "-Expack.security.enabled=false", "-Epath.data=#{testpath}/data", "-Epath.logs=#{testpath}/logs", "-Enode.name=test-cli", "-Ehttp.port=#{port}"
       sleep 30
       system "curl", "-XGET", "localhost:#{port}/"
       output = shell_output("curl -s -XGET localhost:#{port}/_cat/nodes")
@@ -151,7 +151,7 @@ class ElasticsearchFull < Formula
 
     pid = testpath/"pid"
     begin
-      system "#{bin}/elasticsearch", "-d", "-p", pid
+      system "#{bin}/elasticsearch", "-d", "-p", pid, "-Expack.security.enabled=false"
       sleep 30
       system "curl", "-XGET", "localhost:#{port}/"
       output = shell_output("curl -s -XGET localhost:#{port}/_cat/nodes")

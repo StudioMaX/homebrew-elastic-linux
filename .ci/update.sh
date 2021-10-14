@@ -58,7 +58,12 @@ update() {
 log "Using brew: '$(which brew)'."
 
 update "./Formula/apm-server-full.rb" "apm-server/apm-server-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/apm-server-oss.rb" "apm-server/apm-server-oss-$VERSION-linux-x86_64.tar.gz"
+
+if [[ $VERSION =~ ^7\.* ]]
+then
+  update "./Formula/apm-server-oss.rb" "apm-server/apm-server-oss-$VERSION-linux-x86_64.tar.gz"
+fi
+
 update "./Formula/auditbeat-full.rb" "beats/auditbeat/auditbeat-$VERSION-linux-x86_64.tar.gz"
 update "./Formula/auditbeat-oss.rb" "beats/auditbeat/auditbeat-oss-$VERSION-linux-x86_64.tar.gz"
 update "./Formula/elasticsearch-full.rb" "elasticsearch/elasticsearch-$VERSION-linux-x86_64.tar.gz"

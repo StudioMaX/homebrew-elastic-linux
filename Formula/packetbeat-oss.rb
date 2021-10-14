@@ -2,13 +2,13 @@ class PacketbeatOss < Formula
   desc "Lightweight Shipper for Network Data"
   homepage "https://www.elastic.co/products/beats/packetbeat"
   if OS.mac?
-    url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.14.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "5003f2f5b0703b26938620e14ae7c1b4ca5ad09a1a38f3b4c704cd16201f372e"
+    url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.15.1-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "da0983784bf6f5d19fcb190ae4d6a74157e46c3144da2a826d6c634acbfd8cbc"
   else
     url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.14.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "6b96b079f368712255b6ed58bd8f5acb949642b9a8ab72f4e8664e389e6364d8"
   end
-  version "7.14.1"
+  version "7.15.1"
 
   bottle :unneeded
 
