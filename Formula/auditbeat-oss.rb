@@ -10,8 +10,6 @@ class AuditbeatOss < Formula
   end
   version "7.15.2"
 
-  bottle :unneeded
-
   conflicts_with "auditbeat"
   conflicts_with "auditbeat-full"
 

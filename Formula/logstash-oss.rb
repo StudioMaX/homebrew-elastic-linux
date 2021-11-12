@@ -10,8 +10,6 @@ class LogstashOss < Formula
   end
   version "7.15.2"
 
-  bottle :unneeded
-
   conflicts_with "logstash"
   conflicts_with "logstash-full"
 

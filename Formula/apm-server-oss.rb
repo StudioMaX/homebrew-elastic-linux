@@ -10,8 +10,6 @@ class ApmServerOss < Formula
   end
   version "7.15.2"
 
-  bottle :unneeded
-
   conflicts_with "apm-server"
   conflicts_with "apm-server-full"
 

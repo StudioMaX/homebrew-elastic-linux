@@ -10,8 +10,6 @@ class FilebeatFull < Formula
   end
   version "7.15.2"
 
-  bottle :unneeded
-
   conflicts_with "filebeat"
   conflicts_with "filebeat-oss"
 

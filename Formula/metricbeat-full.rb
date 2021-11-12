@@ -10,8 +10,6 @@ class MetricbeatFull < Formula
   end
   version "7.15.2"
 
-  bottle :unneeded
-
   conflicts_with "metricbeat"
   conflicts_with "metricbeat-oss"
 

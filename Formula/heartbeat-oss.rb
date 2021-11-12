@@ -10,8 +10,6 @@ class HeartbeatOss < Formula
   end
   version "7.15.2"
 
-  bottle :unneeded
-
   conflicts_with "heartbeat"
   conflicts_with "heartbeat-full"
 

@@ -10,8 +10,6 @@ class PacketbeatOss < Formula
   end
   version "7.15.2"
 
-  bottle :unneeded
-
   conflicts_with "packetbeat"
   conflicts_with "packetbeat-full"
 

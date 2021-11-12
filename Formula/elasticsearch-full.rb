@@ -10,8 +10,6 @@ class ElasticsearchFull < Formula
   end
   version "7.15.2"
 
-  bottle :unneeded
-
   conflicts_with "elasticsearch"
 
   def cluster_name
