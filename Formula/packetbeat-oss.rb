@@ -5,8 +5,8 @@ class PacketbeatOss < Formula
     url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.15.2-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "13c1aea2b85f82eaf96659b35368d5698021d98afba8a9b468233fa9cb743849"
   else
-    url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.15.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "d6b4afd8f3dcfdc433665f2d644e9772f8e8af29dc09bf44c08d012fa0e5c872"
+    url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.15.2-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "07737125019a7750da67be677b6322e21c5a0512ea6edaf85530e6954b33064d"
   end
   version "7.15.2"
 

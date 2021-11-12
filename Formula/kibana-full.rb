@@ -5,8 +5,8 @@ class KibanaFull < Formula
     url "https://artifacts.elastic.co/downloads/kibana/kibana-7.15.2-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "bcfb9ef7c6f9670ca86eeaba1f009a01773415e00a029bfc862837ea581c6a4f"
   else
-    url "https://artifacts.elastic.co/downloads/kibana/kibana-7.15.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "4e487dcd073b254431911ea4b092c83f29ac7d27bc0af252ce395bf677a8259a"
+    url "https://artifacts.elastic.co/downloads/kibana/kibana-7.15.2-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "824c9545b17250d692c15efd63bf53fafbc722adc602546eae1fbdbfa46b6b54"
   end
   version "7.15.2"
 
