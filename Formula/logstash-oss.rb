@@ -5,8 +5,8 @@ class LogstashOss < Formula
     url "https://artifacts.elastic.co/downloads/logstash/logstash-oss-7.16.2-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "c86325f5ebccfc4fb394be7f95a15acfd3ff7e1066da80020a840ae1be659575"
   else
-    url "https://artifacts.elastic.co/downloads/logstash/logstash-oss-7.16.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "f3abb39383077742d7164be41347e5e6361b6ed5db0d3cc03ef5b3c7762a66b8"
+    url "https://artifacts.elastic.co/downloads/logstash/logstash-oss-7.16.2-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "220aa20132ff03b4879160e52eb5d67d01f5d1b1a1f4c6c14587799c9880136c"
   end
   version "7.16.2"
 

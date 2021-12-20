@@ -5,8 +5,8 @@ class HeartbeatFull < Formula
     url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.2-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "6c267d9b32113f5b76c0e7680908b002d765f0afab85736ca9d1f32b252d0b44"
   else
-    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.1-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "7bb80f16ffe9618cf47d9388c5bc94cd23ba89a866c86aed791aa5a2363a0c3e"
+    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.2-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "0301a36406aee41cba9dbdb3511f882f0c6c79ded9e25551566befa2b59bad4f"
   end
   version "7.16.2"
 
