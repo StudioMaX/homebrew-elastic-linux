@@ -5,8 +5,8 @@ class AuditbeatFull < Formula
     url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.16.3-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "1e528bd450e51bedaa467f6305427073f0fb84227dffb408d2ca950f4dd639bc"
   else
-    url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.16.2-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "7042933f601481576761391ae1d03762d929a4c9c82fb4b04837a412781afd7f"
+    url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.16.3-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "31cf2185bb52fce1a497d02445e6b172e2d69dd43690b0cbd8f044f8c2db7941"
   end
   version "7.16.3"
 
