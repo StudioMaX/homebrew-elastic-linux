@@ -2,8 +2,8 @@ class HeartbeatFull < Formula
   desc "Lightweight Shipper for Uptime Monitoring"
   homepage "https://www.elastic.co/products/beats/heartbeat"
   if OS.mac?
-    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.3-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "e94423576dbbe3afa4b5e21f1ba0f03268b831635a9936a1eb44c13b55d1af88"
+    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.17.0-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "a89145f2312cb73ade07a3f99036bcc340726cf366fdeb0270a73dd6d68cb558"
   else
     url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.3-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "097c364ede52424f6e162c58bd1f8410563719cf3c66296e50b4567701cb6dc8"
