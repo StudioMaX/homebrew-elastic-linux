@@ -5,8 +5,8 @@ class AuditbeatOss < Formula
     url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-oss-7.17.3-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "f515bb5cc1c8a60d75a908c4bd1d48bb818483d04e4df1474ccffd860a8ba931"
   else
-    url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-oss-7.17.2-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "0c8a13d57e0d4b5c0852775b792f22a43bfdb513aa0f45e5ea0e2af6b9f36892"
+    url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-oss-7.17.3-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "e800fa6a02a0fe9212d3c8f54779bd2c500278a3afa5b6a22ab8244bd24e9008"
   end
   version "7.17.3"
 

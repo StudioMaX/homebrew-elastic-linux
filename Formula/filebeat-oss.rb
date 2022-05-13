@@ -5,8 +5,8 @@ class FilebeatOss < Formula
     url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-7.17.3-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "6bdbd4880e4f547bf18db189335d30ccdff02f58b50b7857e30f523b7d1702b4"
   else
-    url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-7.17.2-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "a8a7a0ae40158b29fd8820c7ad5c17cda8e7baf25858c2582865093d7773f0a0"
+    url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-7.17.3-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "1d68cbf31ecef49c8867cecc49b1643bfbb2d6aa02bd3a544cd58c9b7660f147"
   end
   version "7.17.3"
 
