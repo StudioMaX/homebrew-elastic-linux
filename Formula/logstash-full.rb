@@ -2,13 +2,13 @@ class LogstashFull < Formula
   desc "Tool for managing events and logs"
   homepage "https://www.elastic.co/products/logstash"
   if OS.mac?
-    url "https://artifacts.elastic.co/downloads/logstash/logstash-7.17.2-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "5c2687159aaeafb4b988de54a95b806477379aa05bcc1102c14903798c7ce8bf"
+    url "https://artifacts.elastic.co/downloads/logstash/logstash-7.17.3-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "bcc461e59818bc940bb719929d66c7662bcb92726635f6e62dc1fe3f9071cbb3"
   else
     url "https://artifacts.elastic.co/downloads/logstash/logstash-7.17.2-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "07bff7b29022eb4e6159bcc437ebedf15290b71699bbf88e12cc874848d58884"
   end
-  version "7.17.2"
+  version "7.17.3"
 
   conflicts_with "logstash"
   conflicts_with "logstash-oss"
