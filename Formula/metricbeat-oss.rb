@@ -5,8 +5,8 @@ class MetricbeatOss < Formula
     url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "2fa07950504f2269e8f05258358ccc6fa63b43021b34538c2d54ae3c33d8f5a1"
   else
-    url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-7.17.3-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "1b62af9c5212705f30ab7e4fa1c6077f8bc4ceb062b51562194e831e363154e5"
+    url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-7.17.4-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "24e29ac72ba18513dba2ddb711ca4ba9dd1ae74c7b337f00871b8c998da0a5e8"
   end
   version "7.17.4"
 
