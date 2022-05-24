@@ -2,13 +2,13 @@ class HeartbeatOss < Formula
   desc "Lightweight Shipper for Uptime Monitoring"
   homepage "https://www.elastic.co/products/beats/heartbeat"
   if OS.mac?
-    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-7.17.3-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "bf2c135f8b5d23ce47cc439de77eb1e4021891bc5c5c011ef688b2fb64886b0a"
+    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "562775948127b9b4621f220fdb219e5a6f0c48a55a7b75916da8a77a18b47d26"
   else
     url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-7.17.3-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "8e613ae90de1b05ad29eb41759397f4849f4b0831fd3dc2c046160507d6aa2a0"
   end
-  version "7.17.3"
+  version "7.17.4"
 
   conflicts_with "heartbeat"
   conflicts_with "heartbeat-full"
