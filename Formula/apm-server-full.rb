@@ -5,10 +5,10 @@ class ApmServerFull < Formula
     url "https://artifacts.elastic.co/downloads/apm-server/apm-server-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "9fd13fe7c5c3a1c24fc4ce7994b83c1919e6944ae2323ec001673969a3b3c4fa"
   else
-    url "https://artifacts.elastic.co/downloads/apm-server/apm-server-7.17.9-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "694a366f128c972d59324e7e37d9b63b80d0d17a9779897f09e35e367e1b1109"
+    url "https://artifacts.elastic.co/downloads/apm-server/apm-server-7.17.12-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "5874a5487cb1ca69188e4a3aa70c7dd8d9524f071ca3f4e501d62937ed648633"
   end
-  version "7.17.9"
+  version "7.17.12"
 
   conflicts_with "apm-server"
   conflicts_with "apm-server-oss"
