@@ -5,10 +5,10 @@ class PacketbeatOss < Formula
     url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "033e7603e5791842f1a2ced491f1c9d3c8eb7083232210271218b83695e86f6f"
   else
-    url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.17.13-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "dd155f8d4997862634c41ef191daa919f5525d558fe53767438d93d8a125a0d3"
+    url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.17.14-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "1ec9024734ff9c38df7698227f86cb6e891688c94a56c8da1628c8b65de8eebd"
   end
-  version "7.17.13"
+  version "7.17.14"
 
   conflicts_with "packetbeat"
   conflicts_with "packetbeat-full"
