@@ -5,10 +5,10 @@ class ElasticsearchFull < Formula
     url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "6d2343171a0d384910312220aae3512f45e3d3d900557b736c139b8363a008e4"
   else
-    url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.17-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "74e996d55c731a18432c35fb9b8798f68bcd8009f5d70f704cf7f7526a86eebd"
+    url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.20-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "d24d56e5c9028fc4007fc44da4bbdf7827baf09e33ae02ed3280bccece24a4f4"
   end
-  version "7.17.17"
+  version "7.17.20"
 
   conflicts_with "elasticsearch"
 

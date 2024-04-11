@@ -5,10 +5,10 @@ class HeartbeatOss < Formula
     url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "562775948127b9b4621f220fdb219e5a6f0c48a55a7b75916da8a77a18b47d26"
   else
-    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-7.17.17-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "0a01dfc34a50e47e00e689bcb54009e6ed79c76b85627a657bbded7d1fe59304"
+    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-7.17.20-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "060233643909e04eb5b43be419c54772f0658d40b7b91daa58e9deee48845fd5"
   end
-  version "7.17.17"
+  version "7.17.20"
 
   conflicts_with "heartbeat"
   conflicts_with "heartbeat-full"
