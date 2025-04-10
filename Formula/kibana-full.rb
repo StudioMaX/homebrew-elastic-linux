@@ -35,8 +35,8 @@ class KibanaFull < Formula
       packaged_config = IO.read "config/kibana.yml"
       IO.write "config/kibana.yml", "path.data: #{var}/lib/kibana/data\n" + packaged_config
       (etc/"kibana").install Dir["config/*"]
-      rm_rf "config"
-      rm_rf "data"
+      rm_r("config")
+      rm_r("data")
     end
   end
 
