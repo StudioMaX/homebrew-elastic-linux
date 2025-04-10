@@ -5,10 +5,10 @@ class FilebeatFull < Formula
     url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "886ef38ec0656fb11a76a80fd9f0a83fa314b1a32b4f1f176d253ef05b0a7fc0"
   else
-    url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.17.25-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "c51de31f563d5ca2bec74c39ec2de25b0d10ce3f90a9ed3596beb2a2c8d40af0"
+    url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "2669839a7bff5ac699e1e8c12a5e82dcbebfb9424274a14bdb1420d10e0570a9"
   end
-  version "7.17.25"
+  version "7.17.28"
 
   conflicts_with "filebeat"
   conflicts_with "filebeat-oss"
