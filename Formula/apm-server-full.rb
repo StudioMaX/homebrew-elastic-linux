@@ -10,7 +10,6 @@ class ApmServerFull < Formula
   end
   version "7.17.28"
 
-  conflicts_with "apm-server"
   conflicts_with "apm-server-oss"
 
   def install

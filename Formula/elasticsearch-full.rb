@@ -10,8 +10,6 @@ class ElasticsearchFull < Formula
   end
   version "7.17.28"
 
-  conflicts_with "elasticsearch"
-
   def cluster_name
     "elasticsearch_#{ENV["USER"]}"
   end

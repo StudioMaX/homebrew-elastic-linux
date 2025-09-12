@@ -10,8 +10,6 @@ class KibanaFull < Formula
   end
   version "7.17.28"
 
-  conflicts_with "kibana"
-
   def install
     libexec.install(
       "bin",
