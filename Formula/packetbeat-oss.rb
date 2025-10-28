@@ -8,7 +8,6 @@ class PacketbeatOss < Formula
     url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "c8bdb26d79e95f6b5c2008dfe9b8e0096e35e38efa7c60080267286c03c4de69"
   end
-  version "7.17.28"
 
   conflicts_with "packetbeat"
   conflicts_with "packetbeat-full"

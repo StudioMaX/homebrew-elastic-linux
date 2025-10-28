@@ -8,7 +8,6 @@ class MetricbeatOss < Formula
     url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "28fd2e6710974e3217bb5799813e3f5d4112cbec61e1b1deeb2789d0cb90f52c"
   end
-  version "7.17.28"
 
   conflicts_with "metricbeat"
   conflicts_with "metricbeat-full"
@@ -57,7 +56,7 @@ class MetricbeatOss < Formula
 
     begin
       sleep 30
-      assert_predicate testpath/"data/metricbeat", :exist?
+      assert_path_exists testpath/"data/metricbeat"
     ensure
       Process.kill "SIGINT", pid
       Process.wait pid

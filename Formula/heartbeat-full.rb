@@ -8,7 +8,6 @@ class HeartbeatFull < Formula
     url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "7a034646768c53ab285837a5f4ca080348dc539b0398ceba02aeb8eabb6e14d0"
   end
-  version "7.17.28"
 
   conflicts_with "heartbeat"
   conflicts_with "heartbeat-oss"

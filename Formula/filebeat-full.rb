@@ -8,7 +8,6 @@ class FilebeatFull < Formula
     url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "2669839a7bff5ac699e1e8c12a5e82dcbebfb9424274a14bdb1420d10e0570a9"
   end
-  version "7.17.28"
 
   conflicts_with "filebeat"
   conflicts_with "filebeat-oss"
@@ -64,7 +63,7 @@ class FilebeatFull < Formula
       log_file.append_lines "foo bar baz"
       sleep 5
 
-      assert_predicate testpath/"filebeat", :exist?
+      assert_path_exists testpath/"filebeat"
     ensure
       Process.kill("TERM", filebeat_pid)
     end

@@ -8,7 +8,6 @@ class ElasticsearchFull < Formula
     url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "d72adef80b899eb624f6e14aa3b0d8c2ed6597e5fe328bbb1ed9de2c3c14ef28"
   end
-  version "7.17.28"
 
   def cluster_name
     "elasticsearch_#{ENV["USER"]}"
@@ -30,14 +29,14 @@ class ElasticsearchFull < Formula
     # Set up Elasticsearch for local development:
     inreplace "#{libexec}/config/elasticsearch.yml" do |s|
       # 1. Give the cluster a unique name
-      s.gsub!(/#\s*cluster\.name\: .*/, "cluster.name: #{cluster_name}")
+      s.gsub!(/#\s*cluster\.name: .*/, "cluster.name: #{cluster_name}")
 
       # 2. Configure paths
       s.sub!(/^#\s*path\.data:.+$/, "path.data: #{var}/lib/elasticsearch/")
       s.sub!(/^#\s*path\.logs:.+$/, "path.logs: #{var}/log/elasticsearch/")
     end
 
-    inreplace "#{libexec}/config/jvm.options", /logs\/gc.log/, "#{var}/log/elasticsearch/gc.log"
+    inreplace "#{libexec}/config/jvm.options", %r{logs/gc.log}, "#{var}/log/elasticsearch/gc.log"
 
     # Move config files into etc
     (etc/"elasticsearch").install Dir[libexec/"config/*"]
@@ -50,8 +49,13 @@ class ElasticsearchFull < Formula
     end
     bin.env_script_all_files(libexec/"bin", {})
 
-    system "codesign", "-f", "-s", "-", "#{libexec}/modules/x-pack-ml/platform/darwin-x86_64/controller.app", "--deep" if OS.mac?
-    system "find", "#{libexec}/jdk.app/Contents/Home/bin", "-type", "f", "-exec", "codesign", "-f", "-s", "-", "{}", ";" if OS.mac?
+    if OS.mac?
+      system "codesign", "-f", "-s", "-",
+              "#{libexec}/modules/x-pack-ml/platform/darwin-x86_64/controller.app",
+              "--deep"
+      system "find", "#{libexec}/jdk.app/Contents/Home/bin", "-type", "f",
+              "-exec", "codesign", "-f", "-s", "-", "{}", ";"
+    end
   end
 
   def post_install
@@ -64,14 +68,12 @@ class ElasticsearchFull < Formula
   end
 
   def caveats
-    s = <<~EOS
+    <<~EOS
       Data:    #{var}/lib/elasticsearch/#{cluster_name}/
       Logs:    #{var}/log/elasticsearch/#{cluster_name}.log
       Plugins: #{var}/elasticsearch/plugins/
       Config:  #{etc}/elasticsearch/
     EOS
-
-    s
   end
 
   service do
@@ -99,7 +101,9 @@ class ElasticsearchFull < Formula
 
     pid = testpath/"pid"
     begin
-      system "#{bin}/elasticsearch", "-d", "-p", pid, "-Expack.security.enabled=false", "-Epath.data=#{testpath}/data", "-Epath.logs=#{testpath}/logs", "-Enode.name=test-cli", "-Ehttp.port=#{port}"
+      system "#{bin}/elasticsearch", "-d", "-p", pid, "-Expack.security.enabled=false",
+              "-Epath.data=#{testpath}/data", "-Epath.logs=#{testpath}/logs",
+              "-Enode.name=test-cli", "-Ehttp.port=#{port}"
       sleep 30
       system "curl", "-XGET", "localhost:#{port}/"
       output = shell_output("curl -s -XGET localhost:#{port}/_cat/nodes")

@@ -8,7 +8,6 @@ class AuditbeatFull < Formula
     url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "41b7be89cc09ec465f8db21491ea040eb0bb7ec1adca421511c762d123865994"
   end
-  version "7.17.28"
 
   conflicts_with "auditbeat"
   conflicts_with "auditbeat-oss"
@@ -59,8 +58,8 @@ class AuditbeatFull < Formula
     begin
       touch testpath/"files/touch"
       sleep 30
-      s = IO.readlines(testpath/"auditbeat/auditbeat").last(1)[0]
-      assert_match "\"action\":\[\"created\"\]", s
+      s = File.readlines(testpath/"auditbeat/auditbeat").last(1)[0]
+      assert_match "\"action\":[\"created\"]", s
       realdirpath = File.realdirpath(testpath)
       assert_match "\"path\":\"#{realdirpath}/files/touch\"", s
     ensure

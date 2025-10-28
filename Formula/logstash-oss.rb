@@ -8,17 +8,16 @@ class LogstashOss < Formula
     url "https://artifacts.elastic.co/downloads/logstash/logstash-oss-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "e89475bfa464c49b9dcdabb5944107b5b61dd43affb657985440cb384601510d"
   end
-  version "7.17.28"
 
   conflicts_with "logstash"
   conflicts_with "logstash-full"
 
   def install
     inreplace "bin/logstash",
-              /^\. "\$\(cd `dirname \$\{SOURCEPATH\}`\/\.\.; pwd\)\/bin\/logstash\.lib\.sh"/,
+              %r{^\. "\$\(cd `dirname \${SOURCEPATH}`/\.\.; pwd\)/bin/logstash\.lib\.sh"},
               ". #{libexec}/bin/logstash.lib.sh"
     inreplace "bin/logstash-plugin",
-              /^\. "\$\(cd `dirname \$0`\/\.\.; pwd\)\/bin\/logstash\.lib\.sh"/,
+              %r{^\. "\$\(cd `dirname \$0`/\.\.; pwd\)/bin/logstash\.lib\.sh"},
               ". #{libexec}/bin/logstash.lib.sh"
     inreplace "bin/logstash.lib.sh",
               /^LOGSTASH_HOME=.*$/,
@@ -32,7 +31,10 @@ class LogstashOss < Formula
 
     bin.install libexec/"bin/logstash", libexec/"bin/logstash-plugin"
     bin.env_script_all_files(libexec/"bin", {})
-    system "find", "#{libexec}/jdk.app/Contents/Home/bin", "-type", "f", "-exec", "codesign", "-f", "-s", "-", "{}", ";" if OS.mac?
+    if OS.mac?
+      system "find", "#{libexec}/jdk.app/Contents/Home/bin", "-type", "f",
+              "-exec", "codesign", "-f", "-s", "-", "{}", ";"
+    end
   end
 
   def post_install
@@ -40,10 +42,11 @@ class LogstashOss < Formula
     ln_s etc/"logstash", libexec/"config"
   end
 
-  def caveats; <<~EOS
-    Please read the getting started guide located at:
-      https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
-  EOS
+  def caveats
+    <<~EOS
+      Please read the getting started guide located at:
+        https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
+    EOS
   end
 
   service do
