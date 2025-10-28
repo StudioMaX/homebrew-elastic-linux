@@ -33,11 +33,11 @@ class ElasticsearchFull < Formula
       s.gsub!(/#\s*cluster\.name\: .*/, "cluster.name: #{cluster_name}")
 
       # 2. Configure paths
-      s.sub!(%r{#\s*path\.data: /path/to.+$}, "path.data: #{var}/lib/elasticsearch/")
-      s.sub!(%r{#\s*path\.logs: /path/to.+$}, "path.logs: #{var}/log/elasticsearch/")
+      s.sub!(/^#\s*path\.data:.+$/, "path.data: #{var}/lib/elasticsearch/")
+      s.sub!(/^#\s*path\.logs:.+$/, "path.logs: #{var}/log/elasticsearch/")
     end
 
-    inreplace "#{libexec}/config/jvm.options", %r{logs/gc.log}, "#{var}/log/elasticsearch/gc.log"
+    inreplace "#{libexec}/config/jvm.options", /logs\/gc.log/, "#{var}/log/elasticsearch/gc.log"
 
     # Move config files into etc
     (etc/"elasticsearch").install Dir[libexec/"config/*"]
