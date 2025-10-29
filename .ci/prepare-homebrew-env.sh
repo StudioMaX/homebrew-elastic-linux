@@ -34,7 +34,8 @@ install_homebrew() {
 
 install_dependencies() {
   echo "Installing tap..."
-  brew tap studiomax/elastic-linux .
+  mkdir -p . "$HOMEBREW_INSTALL_PATH/Library/Taps/studiomax/homebrew-elastic-linux"
+  cp -a . "$HOMEBREW_INSTALL_PATH/Library/Taps/studiomax/homebrew-elastic-linux"
   echo "Tap was installed"
   brew install glibc || brew postinstall glibc || true
 }
