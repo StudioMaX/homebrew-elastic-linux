@@ -5,8 +5,8 @@ class KibanaFull < Formula
     url "https://artifacts.elastic.co/downloads/kibana/kibana-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "ac2b5a639ad83431db25e4161f811111d45db052eb845091e18f847016a34a55"
   else
-    url "https://artifacts.elastic.co/downloads/kibana/kibana-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "83fb96eca885fa8a31dc040707f9be80b9f04b1b836ea9b25f5e5a6f7402dd0b"
+    url "https://artifacts.elastic.co/downloads/kibana/kibana-7.17.29-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "33be2214371907def42abb8db6cd86fb36faa3883cfc2bf128b1d20b55267d43"
   end
 
   livecheck do
@@ -35,8 +35,9 @@ class KibanaFull < Formula
     bin.env_script_all_files(libexec/"bin", KIBANA_PATH_CONF: etc/"kibana", DATA_PATH: var/"lib/kibana/data")
 
     cd libexec do
-      config_file = "config/kibana.yml"
+      config_file = libexec/"config/kibana.yml"
       packaged_config = config_file.read
+      config_file.unlink if config_file.exist?
       config_file.write "path.data: #{var}/lib/kibana/data\n" + packaged_config
       (etc/"kibana").install Dir["config/*"]
       rm_r("config")

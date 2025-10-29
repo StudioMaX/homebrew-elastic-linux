@@ -5,8 +5,8 @@ class ApmServerOss < Formula
     url "https://artifacts.elastic.co/downloads/apm-server/apm-server-oss-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "c5127bb1d6c981cd8b70a6c9c236afc4ba4d84e9b4620f5004df276018551312"
   else
-    url "https://artifacts.elastic.co/downloads/apm-server/apm-server-oss-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "a18124397885891adce6c5fb4a3b38e9f1825b6720447e8c3d6e4605fe225b20"
+    url "https://artifacts.elastic.co/downloads/apm-server/apm-server-oss-7.17.29-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "11b4648a3a6a1f35eba30941459a3332b0e9cf6366777411d33dc8cff6fc169f"
   end
 
   livecheck do
