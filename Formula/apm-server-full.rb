@@ -1,15 +1,13 @@
 class ApmServerFull < Formula
-  arch arm: "arm64", intel: "x86_64"
-  os macos: "darwin", linux: "linux"
-
-  version "7.17.29"
-  sha256 intel:        "ff3c35239d41e892be33b1172ee72d1af0f637d2bf4396058487e4635c382eff",
-         arm64_linux:  "789fc3b285ec05d71755d3d39286f9c9a06919a47bfe3a1dcf711dd25a940eca",
-         x86_64_linux: "f03d37df903902ec2a07027678f6bfa27abb64811c7348f1023ef8f64e493f08"
-
-  url "https://artifacts.elastic.co/downloads/apm-server/apm-server-#{version}-#{os}-#{arch}.tar.gz?tap=elastic/homebrew-tap"
   desc "Server for shipping APM metrics to Elasticsearch"
   homepage "https://www.elastic.co/"
+  if OS.mac?
+    url "https://artifacts.elastic.co/downloads/apm-server/apm-server-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "9fd13fe7c5c3a1c24fc4ce7994b83c1919e6944ae2323ec001673969a3b3c4fa"
+  else
+    url "https://artifacts.elastic.co/downloads/apm-server/apm-server-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "5c3e7c22e88ca5874c936e2efa80fcd0e5fc944d9c69083f4799a49bc59e032e"
+  end
 
   livecheck do
     url "https://me0ej585.api.sanity.io/v2022-03-25/data/query/production?query=*%5B_type+%3D%3D+%22product_versions%22+%26%26+references%28*%5B_type%3D%3D%22product_names%22+%26%26+lower%28title%29+%3D%3D+%22APM+Server%22%5D._id%29%5D%7B%0A+version_number%2C%0A+%27v%27%3A+string%3A%3Asplit%28version_number%2C+%27.%27%29%0A+%7D+%7C+order%28%0A+length%28v%5B0%5D%29+desc%2C+v%5B0%5D+desc%2C%0A+length%28v%5B1%5D%29+desc%2C+v%5B1%5D+desc%2C%0A+length%28v%5B2%5D%29+desc%2C+v%5B2%5D+desc%2C%0A+%29&returnQuery=false"

@@ -1,16 +1,13 @@
 class KibanaFull < Formula
-  arch arm: "aarch64", intel: "x86_64"
-  os macos: "darwin", linux: "linux"
-
-  version "7.17.29"
-  sha256 arm:          "92e0c51d6a431a8b73dee3e50f78b666d4529da1615880d7254936557201d0c3",
-         intel:        "e9bfa33a14dd318838a57394decdcf2c460bfbb143ed9216e7effdb8b6f82aba",
-         arm64_linux:  "d773b12621b7ca4f43d3fc44ec6dcc840ebf5fc9c958e62a1ba675160eb24dcd",
-         x86_64_linux: "33be2214371907def42abb8db6cd86fb36faa3883cfc2bf128b1d20b55267d43"
-
-  url "https://artifacts.elastic.co/downloads/kibana/kibana-#{version}-#{os}-#{arch}.tar.gz?tap=elastic/homebrew-tap"
   desc "Analytics and search dashboard for Elasticsearch"
   homepage "https://www.elastic.co/products/kibana"
+  if OS.mac?
+    url "https://artifacts.elastic.co/downloads/kibana/kibana-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "ac2b5a639ad83431db25e4161f811111d45db052eb845091e18f847016a34a55"
+  else
+    url "https://artifacts.elastic.co/downloads/kibana/kibana-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "83fb96eca885fa8a31dc040707f9be80b9f04b1b836ea9b25f5e5a6f7402dd0b"
+  end
 
   livecheck do
     url "https://me0ej585.api.sanity.io/v2022-03-25/data/query/production?query=*%5B_type+%3D%3D+%22product_versions%22+%26%26+references%28*%5B_type%3D%3D%22product_names%22+%26%26+lower%28title%29+%3D%3D+%22Kibana%22%5D._id%29%5D%7B%0A+version_number%2C%0A+%27v%27%3A+string%3A%3Asplit%28version_number%2C+%27.%27%29%0A+%7D+%7C+order%28%0A+length%28v%5B0%5D%29+desc%2C+v%5B0%5D+desc%2C%0A+length%28v%5B1%5D%29+desc%2C+v%5B1%5D+desc%2C%0A+length%28v%5B2%5D%29+desc%2C+v%5B2%5D+desc%2C%0A+%29&returnQuery=false"

@@ -1,15 +1,13 @@
 class HeartbeatOss < Formula
-  arch arm: "arm64", intel: "x86_64"
-  os macos: "darwin", linux: "linux"
-
-  version "7.17.29"
-  sha256 intel:        "b3d76ac49f4dc2ffd3771bb8c357ea767db30e8e11cbe533b174c5411a1ceb2f",
-         arm64_linux:  "ab759d69b25d6183af51cde9e7f20543a3daed26c2718f9268196813c3b37eb2",
-         x86_64_linux: "cc8d50bf099d0c86c3ff4609c1bff3f798c71966de711a0b3f1452d08cb0ee82"
-
-  url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-#{version}-#{os}-#{arch}.tar.gz?tap=elastic/homebrew-tap"
   desc "Lightweight Shipper for Uptime Monitoring"
   homepage "https://www.elastic.co/products/beats/heartbeat"
+  if OS.mac?
+    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "562775948127b9b4621f220fdb219e5a6f0c48a55a7b75916da8a77a18b47d26"
+  else
+    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "12e23ceba4be8f6adf83cf04df3949b99eb24b69b06d174a78a00ec12366a374"
+  end
 
   livecheck do
     url "https://me0ej585.api.sanity.io/v2022-03-25/data/query/production?query=*%5B_type+%3D%3D+%22product_versions%22+%26%26+references%28*%5B_type%3D%3D%22product_names%22+%26%26+lower%28title%29+%3D%3D+%22Heartbeat+OSS%22%5D._id%29%5D%7B%0A+version_number%2C%0A+%27v%27%3A+string%3A%3Asplit%28version_number%2C+%27.%27%29%0A+%7D+%7C+order%28%0A+length%28v%5B0%5D%29+desc%2C+v%5B0%5D+desc%2C%0A+length%28v%5B1%5D%29+desc%2C+v%5B1%5D+desc%2C%0A+length%28v%5B2%5D%29+desc%2C+v%5B2%5D+desc%2C%0A+%29&returnQuery=false"
