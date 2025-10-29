@@ -12,6 +12,7 @@ HOMEBREW_INSTALL_PATH="/tmp/b"
 # this environment variable is used by homebrew, the default is overridden
 # otherwise homebrew does not allow an install in /tmp
 export HOMEBREW_TEMP="/tmp/homebrew-temp"
+export HOMEBREW_NO_AUTO_UPDATE="1"
 
 remove_homebrew() {
   rm -rf "$HOMEBREW_INSTALL_PATH"
@@ -31,4 +32,12 @@ install_homebrew() {
   eval $("$HOMEBREW_INSTALL_PATH/bin/brew" shellenv)
 }
 
+install_dependencies() {
+  echo "Installing tap..."
+  brew tap studiomax/elastic-linux .
+  echo "Tap was installed"
+  brew install glibc || brew postinstall glibc || true
+}
+
 install_homebrew
+install_dependencies

@@ -9,26 +9,88 @@ VERSION=$1
 DOWNLOAD_BASE=${DOWNLOAD_BASE:=https://artifacts.elastic.co/downloads}
 
 DOWNLOAD_ARGS="tap=elastic/homebrew-tap"
+TAP_NAME="studiomax/elastic-linux"
 
 log() {
   echo "[homebrew-updater] $1"
 }
 
+# Detect current OS/arch for brew fetch
+detect_platform() {
+  local uname_s uname_m os arch
+  uname_s=$(uname -s)
+  uname_m=$(uname -m)
+
+  case "$uname_s" in
+    Darwin) os="darwin" ;;
+    Linux) os="linux" ;;
+    *) log "Unsupported OS: $uname_s"; exit 1 ;;
+  esac
+
+  case "$uname_m" in
+    arm64|aarch64) arch="aarch64" ;;
+    x86_64) arch="x86_64" ;;
+    *) log "Unsupported architecture: $uname_m"; exit 1 ;;
+  esac
+
+  echo "$os/$arch"
+}
+
+CURRENT_PLATFORM=$(detect_platform)
+
 update() {
-  FORMULA_FILE=$1
-  ARTIFACT_PATH=$2
+  local formula_file=$1
+  local formula_name
+  formula_name=$(basename "${formula_file%.rb}")
 
-  NEW_URL="$DOWNLOAD_BASE/$ARTIFACT_PATH?$DOWNLOAD_ARGS"
-#-E -e "s|^(\s*url.*-linux-.*\".*sha256) \".*\"$|\1 \"\"|g"
-  log "Replacing the url, version, and emptying the sha256 of the formula '${FORMULA_FILE}'."
-  /usr/bin/sed -i -E \
-    -e "s|^(\s*url) \".*-linux-.*\"$|\1 \"$NEW_URL\"|" \
-    -e "s|^(\s*version) \".*\"$|\1 \"$VERSION\"|" \
-    -e '/^ *url \".*-linux-.*\"/,/^ *[^:]*:/s/sha256 \".*\"/sha256 \"\"/' \
-    "$FORMULA_FILE"
+  log "Updating formula: $formula_file"
 
-  log "Installing '${FORMULA_FILE}'."
-  if BREW_INSTALL_OUTPUT=$(brew install --formula "$FORMULA_FILE" 2>&1)
+  # Extract available OS and arch values from formula
+  local os_list arch_list
+  os_list=$(grep -E '^\s*os ' "$formula_file" | sed -E 's/.*os (.*)/\1/' | tr -d '"' | tr ',' '\n' | awk -F: '{print $2}' | xargs)
+  arch_list=$(grep -E '^\s*arch ' "$formula_file" | sed -E 's/.*arch (.*)/\1/' | tr -d '"' | tr ',' '\n' | awk -F: '{print $2}' | xargs)
+
+  log "Detected OS list: $os_list"
+  log "Detected arch list: $arch_list"
+
+  # Update version in formula
+  /usr/bin/sed -i -E "s|^(\s*version\s+\").*(\")|\1${VERSION}\2|" "$formula_file"
+
+  # Determine base URL (without ?tap=...)
+  local base_url
+  base_url=$(grep -E '^\s*url\s+"https:\/\/artifacts\.elastic\.co' "$formula_file" | sed -E 's/.*"(https[^"]+)".*/\1/' | sed 's|\?.*||')
+
+  log "Base URL: $base_url"
+
+  # Now iterate all os/arch combos
+  for os in $os_list; do
+    for arch in $arch_list; do
+      local platform="${os}/${arch}"
+      local url="${base_url//\#\{os\}/${os}}"
+      url="${url//\#\{arch\}/${arch}}"
+      url="${url//\#\{version\}/${VERSION}}"
+
+      log "Processing $platform → $url"
+
+      local sha256=""
+      # fallback to curl + sha256sum for other platforms
+      if curl -fsSL "$url" -o /tmp/tmp.tar.gz; then
+        sha256=$(shasum -a 256 /tmp/tmp.tar.gz | awk '{print $1}')
+        rm -f /tmp/tmp.tar.gz
+      else
+        log "Failed to download $url"
+      fi
+
+      if [[ -n "$sha256" ]]; then
+        log "SHA256 for $platform: $sha256"
+      else
+        log "No sha256 found for $platform"
+      fi
+    done
+  done
+
+  log "Installing '$TAP_NAME/$formula_name'."
+  if BREW_INSTALL_OUTPUT=$(brew install --formula "$TAP_NAME/$formula_name" 2>&1)
   then
     echo "$BREW_INSTALL_OUTPUT"
     log "Install successful."
@@ -38,43 +100,29 @@ update() {
     exit 1
   fi
 
-  log "Picking up the reported new sha256."
-  NEW_SHA256=$(echo "$BREW_INSTALL_OUTPUT" | awk '/sha256 / { gsub("\"","");print $2 }')
-
-  if test -z "$NEW_SHA256"
-  then
-    log 'No new sha256 detected. Aborting.'
-    exit 1
-  fi
-
-  log "Putting the new sha256 in place."
-  /usr/bin/sed -i \
-    -e "/^ *url \".*-linux-.*\"/,/^ *[^:]*:/s/sha256 \".*\"/sha256 \"$NEW_SHA256\"/" \
-    "$FORMULA_FILE"
-
-  brew uninstall --formula "$(basename "$FORMULA_FILE" .rb)"
+  brew uninstall --formula "$TAP_NAME/$formula_name"
 }
 
 log "Using brew: '$(which brew)'."
 
-update "./Formula/apm-server-full.rb" "apm-server/apm-server-$VERSION-linux-x86_64.tar.gz"
+update "./Formula/apm-server-full.rb"
 
 if [[ $VERSION =~ ^7\.* ]]
 then
-  update "./Formula/apm-server-oss.rb" "apm-server/apm-server-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/apm-server-oss.rb"
 fi
 
-update "./Formula/auditbeat-full.rb" "beats/auditbeat/auditbeat-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/auditbeat-oss.rb" "beats/auditbeat/auditbeat-oss-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/elasticsearch-full.rb" "elasticsearch/elasticsearch-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/filebeat-full.rb" "beats/filebeat/filebeat-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/filebeat-oss.rb" "beats/filebeat/filebeat-oss-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/heartbeat-full.rb" "beats/heartbeat/heartbeat-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/heartbeat-oss.rb" "beats/heartbeat/heartbeat-oss-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/kibana-full.rb" "kibana/kibana-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/logstash-full.rb" "logstash/logstash-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/logstash-oss.rb" "logstash/logstash-oss-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/metricbeat-full.rb" "beats/metricbeat/metricbeat-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/metricbeat-oss.rb" "beats/metricbeat/metricbeat-oss-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/packetbeat-full.rb" "beats/packetbeat/packetbeat-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/packetbeat-oss.rb" "beats/packetbeat/packetbeat-oss-$VERSION-linux-x86_64.tar.gz"
+update "./Formula/auditbeat-full.rb"
+update "./Formula/auditbeat-oss.rb"
+update "./Formula/elasticsearch-full.rb"
+update "./Formula/filebeat-full.rb"
+update "./Formula/filebeat-oss.rb"
+update "./Formula/heartbeat-full.rb"
+update "./Formula/heartbeat-oss.rb"
+update "./Formula/kibana-full.rb"
+update "./Formula/logstash-full.rb"
+update "./Formula/logstash-oss.rb"
+update "./Formula/metricbeat-full.rb"
+update "./Formula/metricbeat-oss.rb"
+update "./Formula/packetbeat-full.rb"
+update "./Formula/packetbeat-oss.rb"
