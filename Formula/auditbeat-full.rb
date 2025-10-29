@@ -1,13 +1,15 @@
 class AuditbeatFull < Formula
+  arch arm: "arm64", intel: "x86_64"
+  os macos: "darwin", linux: "linux"
+
+  version "7.17.29"
+  sha256 intel:        "c84b9f23e59258bf6c0cd5968a346804c0fd54662c0589e309bd62a77b0438b5",
+         arm64_linux:  "785f8cae90024ab35434603a1ac4c21cfc13a8a61aa1edc0f882ccc84d496437",
+         x86_64_linux: "2c9c42a21381954d0224dfd510df85b41de873e7f5020599b43272ea93212940"
+
+  url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-#{version}-#{os}-#{arch}.tar.gz?tap=elastic/homebrew-tap"
   desc "Lightweight Shipper for Audit Data"
   homepage "https://www.elastic.co/products/beats/auditbeat"
-  if OS.mac?
-    url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "ef842a52a573ed658e8109410570f651e9208f2156008afbcf253c6daf35aee5"
-  else
-    url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "41b7be89cc09ec465f8db21491ea040eb0bb7ec1adca421511c762d123865994"
-  end
 
   livecheck do
     url "https://me0ej585.api.sanity.io/v2022-03-25/data/query/production?query=*%5B_type+%3D%3D+%22product_versions%22+%26%26+references%28*%5B_type%3D%3D%22product_names%22+%26%26+lower%28title%29+%3D%3D+%22Auditbeat%22%5D._id%29%5D%7B%0A+version_number%2C%0A+%27v%27%3A+string%3A%3Asplit%28version_number%2C+%27.%27%29%0A+%7D+%7C+order%28%0A+length%28v%5B0%5D%29+desc%2C+v%5B0%5D+desc%2C%0A+length%28v%5B1%5D%29+desc%2C+v%5B1%5D+desc%2C%0A+length%28v%5B2%5D%29+desc%2C+v%5B2%5D+desc%2C%0A+%29&returnQuery=false"

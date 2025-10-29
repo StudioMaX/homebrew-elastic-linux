@@ -1,13 +1,15 @@
 class LogstashFull < Formula
+  arch arm: "aarch64", intel: "x86_64"
+  os macos: "darwin", linux: "linux"
+
+  version "7.17.29"
+  sha256 intel:        "30d3624f6e42dc0e9a5c7e5385ec13ddb2ad6bd97e52ad9af0217478c30bb803",
+         arm64_linux:  "0fe6d75d22a8eed41d168cc729788161ff2d31ded673df5f41cbfd57d170d6d2",
+         x86_64_linux: "15e15eeb8bc18bf95c30459d4a36d72bd1b2c73d32519f9a1ac2485c1a037587"
+
+  url "https://artifacts.elastic.co/downloads/logstash/logstash-#{version}-#{os}-#{arch}.tar.gz?tap=elastic/homebrew-tap"
   desc "Tool for managing events and logs"
   homepage "https://www.elastic.co/products/logstash"
-  if OS.mac?
-    url "https://artifacts.elastic.co/downloads/logstash/logstash-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "698b6000788e123b647c988993f710c6d9bc44eb8c8e6f97d6b18a695a61f0a6"
-  else
-    url "https://artifacts.elastic.co/downloads/logstash/logstash-7.17.28-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "348fa1d06660805d4cf3b04a20cb62d880960ff522ad866635f442be97c82ffc"
-  end
 
   livecheck do
     url "https://me0ej585.api.sanity.io/v2022-03-25/data/query/production?query=*%5B_type+%3D%3D+%22product_versions%22+%26%26+references%28*%5B_type%3D%3D%22product_names%22+%26%26+lower%28title%29+%3D%3D+%22Logstash%22%5D._id%29%5D%7B%0A+version_number%2C%0A+%27v%27%3A+string%3A%3Asplit%28version_number%2C+%27.%27%29%0A+%7D+%7C+order%28%0A+length%28v%5B0%5D%29+desc%2C+v%5B0%5D+desc%2C%0A+length%28v%5B1%5D%29+desc%2C+v%5B1%5D+desc%2C%0A+length%28v%5B2%5D%29+desc%2C+v%5B2%5D+desc%2C%0A+%29&returnQuery=false"
