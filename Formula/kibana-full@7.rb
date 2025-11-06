@@ -36,7 +36,7 @@ class KibanaFullAT7 < Formula
 
       bin.install libexec/"bin"/f
     end
-    bin.env_script_all_files(libexec/"bin", KIBANA_PATH_CONF: etc/"kibana", DATA_PATH: var/"lib/kibana/data")
+    bin.env_script_all_files(libexec/"bin", KBN_PATH_CONF: etc/"kibana")
 
     cd libexec do
       config_file = libexec/"config/kibana.yml"
