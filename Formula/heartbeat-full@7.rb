@@ -18,9 +18,6 @@ class HeartbeatFullAT7 < Formula
 
   deprecate! date: "2026-01-15", because: :unsupported
 
-  conflicts_with "heartbeat"
-  conflicts_with "heartbeat-oss@7"
-
   def install
     ["fields.yml", "ingest", "kibana", "module"].each { |d| libexec.install d if File.exist?(d) }
     (libexec/"bin").install "heartbeat"

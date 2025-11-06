@@ -18,9 +18,6 @@ class LogstashOssAT7 < Formula
 
   deprecate! date: "2026-01-15", because: :unsupported
 
-  conflicts_with "logstash"
-  conflicts_with "logstash-full@7"
-
   def install
     inreplace "bin/logstash",
               %r{^\. "\$\(cd `dirname \${SOURCEPATH}`/\.\.; pwd\)/bin/logstash\.lib\.sh"},

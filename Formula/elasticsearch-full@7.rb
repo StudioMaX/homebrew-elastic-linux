@@ -45,7 +45,7 @@ class ElasticsearchFullAT7 < Formula
       s.sub!(/^#\s*path\.logs:.+$/, "path.logs: #{var}/log/elasticsearch/")
     end
 
-    inreplace "#{libexec}/config/jvm.options", %r{logs/gc.log}, "#{var}/log/elasticsearch/gc.log"
+    inreplace "#{libexec}/config/jvm.options", %r{logs/gc\.log}, "#{var}/log/elasticsearch/gc.log"
 
     # Move config files into etc
     (etc/"elasticsearch").install Dir[libexec/"config/*"]
