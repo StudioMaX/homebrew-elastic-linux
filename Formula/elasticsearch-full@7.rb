@@ -1,18 +1,22 @@
-class ElasticsearchFull < Formula
+class ElasticsearchFullAT7 < Formula
   desc "Distributed search & analytics engine"
   homepage "https://www.elastic.co/products/elasticsearch"
   if OS.mac?
     url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "6d2343171a0d384910312220aae3512f45e3d3d900557b736c139b8363a008e4"
   else
-    url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.19.6-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "6a4d955e30fddfb589b93efd967b548fa4bcc99d5bec057e240e49137af7ce80"
+    url "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.29-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "f7175de3ac8ca16326b9dbdff4ef70bc3da6405efe624655444ba2464073ea8e"
   end
 
   livecheck do
     url "https://me0ej585.api.sanity.io/v2022-03-25/data/query/production?query=*%5B_type+%3D%3D+%22product_versions%22+%26%26+references%28*%5B_type%3D%3D%22product_names%22+%26%26+lower%28title%29+%3D%3D+%22Elasticsearch%22%5D._id%29%5D%7B%0A+version_number%2C%0A+%27v%27%3A+string%3A%3Asplit%28version_number%2C+%27.%27%29%0A+%7D+%7C+order%28%0A+length%28v%5B0%5D%29+desc%2C+v%5B0%5D+desc%2C%0A+length%28v%5B1%5D%29+desc%2C+v%5B1%5D+desc%2C%0A+length%28v%5B2%5D%29+desc%2C+v%5B2%5D+desc%2C%0A+%29&returnQuery=false"
     regex(/"version_number":"(#{Regexp.escape(version.major)}(?:\.\d+\.\d+)*)/i)
   end
+
+  keg_only :versioned_formula
+
+  deprecate! date: "2026-01-15", because: :unsupported
 
   def cluster_name
     "elasticsearch_#{ENV["USER"]}"
@@ -41,7 +45,7 @@ class ElasticsearchFull < Formula
       s.sub!(/^#\s*path\.logs:.+$/, "path.logs: #{var}/log/elasticsearch/")
     end
 
-    inreplace "#{libexec}/config/jvm.options", %r{gc\.log}, "#{var}/log/elasticsearch/gc.log"
+    inreplace "#{libexec}/config/jvm.options", %r{logs/gc.log}, "#{var}/log/elasticsearch/gc.log"
 
     # Move config files into etc
     (etc/"elasticsearch").install Dir[libexec/"config/*"]

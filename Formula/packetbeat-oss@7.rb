@@ -1,12 +1,12 @@
-class PacketbeatOss < Formula
+class PacketbeatOssAT7 < Formula
   desc "Lightweight Shipper for Network Data"
   homepage "https://www.elastic.co/products/beats/packetbeat"
   if OS.mac?
     url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "033e7603e5791842f1a2ced491f1c9d3c8eb7083232210271218b83695e86f6f"
   else
-    url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-8.19.6-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "1612691868d329648d87ade750ac73c0cec58cf33494b9b60ed44901380d1726"
+    url "https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-oss-7.17.29-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "7aa339947976127aa22dd477aee6569974ad5616a26d3460d4675cafec8cc7aa"
   end
 
   livecheck do
@@ -14,8 +14,12 @@ class PacketbeatOss < Formula
     regex(/"version_number":"(#{Regexp.escape(version.major)}(?:\.\d+\.\d+)*)/i)
   end
 
+  keg_only :versioned_formula
+
+  deprecate! date: "2026-01-15", because: :unsupported
+
   conflicts_with "packetbeat"
-  conflicts_with "packetbeat-full"
+  conflicts_with "packetbeat-full@7"
 
   def install
     ["fields.yml", "ingest", "kibana", "module"].each { |d| libexec.install d if File.exist?(d) }

@@ -1,12 +1,12 @@
-class MetricbeatFull < Formula
+class MetricbeatFullAT7 < Formula
   desc "Collect metrics from your systems and services"
   homepage "https://www.elastic.co/products/beats/metricbeat"
   if OS.mac?
     url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "c325eca152153feeafbbd8ae1ec02001adf8d90918da6af8a28e8fe88c51f042"
   else
-    url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-8.19.6-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "5797ee4afb86d59cceaea393cc5f17ccf0cb2afea7b073ecd95ea552d94100fd"
+    url "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.17.29-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "2c9e90b521619a71a7ad324175546f357c6dc76954d92df7d5b69c686ba54021"
   end
 
   livecheck do
@@ -14,8 +14,12 @@ class MetricbeatFull < Formula
     regex(/"version_number":"(#{Regexp.escape(version.major)}(?:\.\d+\.\d+)*)/i)
   end
 
+  keg_only :versioned_formula
+
+  deprecate! date: "2026-01-15", because: :unsupported
+
   conflicts_with "metricbeat"
-  conflicts_with "metricbeat-oss"
+  conflicts_with "metricbeat-oss@7"
 
   def install
     ["fields.yml", "ingest", "kibana", "module"].each { |d| libexec.install d if File.exist?(d) }

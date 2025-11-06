@@ -1,12 +1,12 @@
-class HeartbeatOss < Formula
+class HeartbeatOssAT7 < Formula
   desc "Lightweight Shipper for Uptime Monitoring"
   homepage "https://www.elastic.co/products/beats/heartbeat"
   if OS.mac?
     url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "562775948127b9b4621f220fdb219e5a6f0c48a55a7b75916da8a77a18b47d26"
   else
-    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-8.19.6-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "645029eff3f2854ceb7c40a23e366945ce3545b1d79fac206c5496d64d2c16a5"
+    url "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-7.17.29-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "cc8d50bf099d0c86c3ff4609c1bff3f798c71966de711a0b3f1452d08cb0ee82"
   end
 
   livecheck do
@@ -14,8 +14,12 @@ class HeartbeatOss < Formula
     regex(/"version_number":"(#{Regexp.escape(version.major)}(?:\.\d+\.\d+)*)/i)
   end
 
+  keg_only :versioned_formula
+
+  deprecate! date: "2026-01-15", because: :unsupported
+
   conflicts_with "heartbeat"
-  conflicts_with "heartbeat-full"
+  conflicts_with "heartbeat-full@7"
 
   def install
     ["fields.yml", "ingest", "kibana", "module"].each { |d| libexec.install d if File.exist?(d) }

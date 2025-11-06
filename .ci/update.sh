@@ -64,24 +64,41 @@ update() {
 
 log "Using brew: '$(which brew)'."
 
-update "./Formula/apm-server-full.rb" "apm-server/apm-server-$VERSION-linux-x86_64.tar.gz"
-
 if [[ $VERSION =~ ^7\.* ]]
 then
-  update "./Formula/apm-server-oss.rb" "apm-server/apm-server-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/apm-server-full@7.rb" "apm-server/apm-server-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/apm-server-oss@7.rb" "apm-server/apm-server-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/auditbeat-full@7.rb" "beats/auditbeat/auditbeat-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/auditbeat-oss@7.rb" "beats/auditbeat/auditbeat-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/elasticsearch-full@7.rb" "elasticsearch/elasticsearch-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/filebeat-full@7.rb" "beats/filebeat/filebeat-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/filebeat-oss@7.rb" "beats/filebeat/filebeat-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/heartbeat-full@7.rb" "beats/heartbeat/heartbeat-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/heartbeat-oss@7.rb" "beats/heartbeat/heartbeat-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/kibana-full@7.rb" "kibana/kibana-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/logstash-full@7.rb" "logstash/logstash-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/logstash-oss@7.rb" "logstash/logstash-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/metricbeat-full@7.rb" "beats/metricbeat/metricbeat-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/metricbeat-oss@7.rb" "beats/metricbeat/metricbeat-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/packetbeat-full@7.rb" "beats/packetbeat/packetbeat-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/packetbeat-oss@7.rb" "beats/packetbeat/packetbeat-oss-$VERSION-linux-x86_64.tar.gz"
 fi
 
-update "./Formula/auditbeat-full.rb" "beats/auditbeat/auditbeat-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/auditbeat-oss.rb" "beats/auditbeat/auditbeat-oss-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/elasticsearch-full.rb" "elasticsearch/elasticsearch-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/filebeat-full.rb" "beats/filebeat/filebeat-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/filebeat-oss.rb" "beats/filebeat/filebeat-oss-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/heartbeat-full.rb" "beats/heartbeat/heartbeat-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/heartbeat-oss.rb" "beats/heartbeat/heartbeat-oss-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/kibana-full.rb" "kibana/kibana-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/logstash-full.rb" "logstash/logstash-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/logstash-oss.rb" "logstash/logstash-oss-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/metricbeat-full.rb" "beats/metricbeat/metricbeat-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/metricbeat-oss.rb" "beats/metricbeat/metricbeat-oss-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/packetbeat-full.rb" "beats/packetbeat/packetbeat-$VERSION-linux-x86_64.tar.gz"
-update "./Formula/packetbeat-oss.rb" "beats/packetbeat/packetbeat-oss-$VERSION-linux-x86_64.tar.gz"
+if [[ $VERSION =~ ^8\.* ]]
+then
+  update "./Formula/apm-server-full.rb" "apm-server/apm-server-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/auditbeat-full.rb" "beats/auditbeat/auditbeat-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/auditbeat-oss.rb" "beats/auditbeat/auditbeat-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/elasticsearch-full.rb" "elasticsearch/elasticsearch-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/filebeat-full.rb" "beats/filebeat/filebeat-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/filebeat-oss.rb" "beats/filebeat/filebeat-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/heartbeat-full.rb" "beats/heartbeat/heartbeat-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/heartbeat-oss.rb" "beats/heartbeat/heartbeat-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/kibana-full.rb" "kibana/kibana-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/logstash-full.rb" "logstash/logstash-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/logstash-oss.rb" "logstash/logstash-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/metricbeat-full.rb" "beats/metricbeat/metricbeat-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/metricbeat-oss.rb" "beats/metricbeat/metricbeat-oss-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/packetbeat-full.rb" "beats/packetbeat/packetbeat-$VERSION-linux-x86_64.tar.gz"
+  update "./Formula/packetbeat-oss.rb" "beats/packetbeat/packetbeat-oss-$VERSION-linux-x86_64.tar.gz"
+fi

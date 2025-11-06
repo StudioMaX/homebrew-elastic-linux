@@ -1,12 +1,12 @@
-class LogstashFull < Formula
+class LogstashFullAT7 < Formula
   desc "Tool for managing events and logs"
   homepage "https://www.elastic.co/products/logstash"
   if OS.mac?
     url "https://artifacts.elastic.co/downloads/logstash/logstash-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "698b6000788e123b647c988993f710c6d9bc44eb8c8e6f97d6b18a695a61f0a6"
   else
-    url "https://artifacts.elastic.co/downloads/logstash/logstash-8.19.6-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "50f4f5cc194b50780ef5e6b7962067f6d54179881bdffd212f176d39f8b875af"
+    url "https://artifacts.elastic.co/downloads/logstash/logstash-7.17.29-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "15e15eeb8bc18bf95c30459d4a36d72bd1b2c73d32519f9a1ac2485c1a037587"
   end
 
   livecheck do
@@ -14,8 +14,12 @@ class LogstashFull < Formula
     regex(/"version_number":"(#{Regexp.escape(version.major)}(?:\.\d+\.\d+)*)/i)
   end
 
+  keg_only :versioned_formula
+
+  deprecate! date: "2026-01-15", because: :unsupported
+
   conflicts_with "logstash"
-  conflicts_with "logstash-oss"
+  conflicts_with "logstash-oss@7"
 
   def install
     inreplace "bin/logstash",

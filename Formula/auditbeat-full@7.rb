@@ -1,12 +1,12 @@
-class AuditbeatFull < Formula
+class AuditbeatFullAT7 < Formula
   desc "Lightweight Shipper for Audit Data"
   homepage "https://www.elastic.co/products/beats/auditbeat"
   if OS.mac?
     url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "ef842a52a573ed658e8109410570f651e9208f2156008afbcf253c6daf35aee5"
   else
-    url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-8.19.6-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "3e97edbbdb995dde42e7186b52ee6e35e298fabd0a42a9532dc9839e03dd5694"
+    url "https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.17.29-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "2c9c42a21381954d0224dfd510df85b41de873e7f5020599b43272ea93212940"
   end
 
   livecheck do
@@ -14,8 +14,12 @@ class AuditbeatFull < Formula
     regex(/"version_number":"(#{Regexp.escape(version.major)}(?:\.\d+\.\d+)*)/i)
   end
 
+  keg_only :versioned_formula
+
+  deprecate! date: "2026-01-15", because: :unsupported
+
   conflicts_with "auditbeat"
-  conflicts_with "auditbeat-oss"
+  conflicts_with "auditbeat-oss@7"
 
   def install
     ["fields.yml", "ingest", "kibana", "module"].each { |d| libexec.install d if File.exist?(d) }

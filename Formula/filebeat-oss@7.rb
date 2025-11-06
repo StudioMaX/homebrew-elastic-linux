@@ -1,12 +1,12 @@
-class FilebeatOss < Formula
+class FilebeatOssAT7 < Formula
   desc "File harvester to ship log files to Elasticsearch or Logstash"
   homepage "https://www.elastic.co/products/beats/filebeat"
   if OS.mac?
     url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "43277cf877365746834ecb97c36424005474ab773d49e0712c7c62fa0f6dd144"
   else
-    url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-8.19.6-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "35a5a10a43076e811667b6152d2b0dac5184793e20cc94e59df223d02f92fd8d"
+    url "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-7.17.29-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "7adcb2f86742419d8eb8db5def15e00adbfb1ad17b7e70315a80a2672b26c583"
   end
 
   livecheck do
@@ -14,8 +14,12 @@ class FilebeatOss < Formula
     regex(/"version_number":"(#{Regexp.escape(version.major)}(?:\.\d+\.\d+)*)/i)
   end
 
+  keg_only :versioned_formula
+
+  deprecate! date: "2026-01-15", because: :unsupported
+
   conflicts_with "filebeat"
-  conflicts_with "filebeat-full"
+  conflicts_with "filebeat-full@7"
 
   def install
     ["fields.yml", "ingest", "kibana", "module"].each { |d| libexec.install d if File.exist?(d) }

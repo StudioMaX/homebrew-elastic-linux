@@ -1,12 +1,12 @@
-class ApmServerFull < Formula
+class ApmServerFullAT7 < Formula
   desc "Server for shipping APM metrics to Elasticsearch"
   homepage "https://www.elastic.co/"
   if OS.mac?
     url "https://artifacts.elastic.co/downloads/apm-server/apm-server-7.17.4-darwin-x86_64.tar.gz?tap=elastic/homebrew-tap"
     sha256 "9fd13fe7c5c3a1c24fc4ce7994b83c1919e6944ae2323ec001673969a3b3c4fa"
   else
-    url "https://artifacts.elastic.co/downloads/apm-server/apm-server-8.19.6-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
-    sha256 "8b6ddc40086ff5277f62378e0e09be313cd544bd3935b82e5a2df8bf5b308517"
+    url "https://artifacts.elastic.co/downloads/apm-server/apm-server-7.17.29-linux-x86_64.tar.gz?tap=elastic/homebrew-tap"
+    sha256 "f03d37df903902ec2a07027678f6bfa27abb64811c7348f1023ef8f64e493f08"
   end
 
   livecheck do
@@ -14,7 +14,11 @@ class ApmServerFull < Formula
     regex(/"version_number":"(#{Regexp.escape(version.major)}(?:\.\d+\.\d+)*)/i)
   end
 
-  conflicts_with "apm-server-oss"
+  keg_only :versioned_formula
+
+  deprecate! date: "2026-01-15", because: :unsupported
+
+  conflicts_with "apm-server-oss@7"
 
   def install
     ["fields.yml", "ingest", "kibana", "module"].each { |d| libexec.install d if File.exist?(d) }
